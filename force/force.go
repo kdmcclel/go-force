@@ -29,12 +29,19 @@ func Create(version, clientId, clientSecret, userName, password, securityToken,
 		environment:   environment,
 	}
 
+	httpAuth := &forceHttpAuth{
+		userName:    userName,
+		password:    password,
+		environment: environment,
+	}
+
 	forceApi := &ForceApi{
 		apiResources:           make(map[string]string),
 		apiSObjects:            make(map[string]*SObjectMetaData),
 		apiSObjectDescriptions: make(map[string]*SObjectDescription),
 		apiVersion:             version,
 		oauth:                  oauth,
+		httpAuth:               httpAuth,
 	}
 
 	// Init oauth
